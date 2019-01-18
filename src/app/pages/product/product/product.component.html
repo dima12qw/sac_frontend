@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-body >
+      <button class="btn btn-primary pull-right" (click)="open(content)">Add Product</button>
+  <div class="row">
+    <div class="column"  *ngFor="let product of products">
+      <div class="card">
+        <div *ngIf="product.url">
+        <img src={{product.url}} alt="photo" style="width:100%">
+      </div>
+      <div *ngIf="!product.url">
+          <img src="http://i.hurimg.com/i/hurriyet/75/1500x844/5b051e45e7aa3c1bc447ae1e.jpg" alt="photo" style="width:100%">
+        </div>
+        <div class="container">
+          <br>
+          <b>Name: </b><h4>{{product.name}}</h4>
+            <br>
+            <b>Description: </b><span>{{product.description}}</span>
+            <br>
+            <b>Price: </b><span>{{product.price}}</span>
+        </div>
+        <br>
+        <button nbButton size="xsmall" (click)="addToCart(product.id)">Add to cart</button>
+      </div>
+    </div>
+    </div>
+    </nb-card-body>
+    </nb-card>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="pull-right">
+          <button type="submit" class="btn btn-danger">Submit</button>
+          <button class="btn btn-info" (click)="c()">Cancel</button>
+        </div>
+      </div>
+      
+    </ng-template>
